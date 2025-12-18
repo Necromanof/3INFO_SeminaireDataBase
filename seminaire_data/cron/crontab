@@ -1,0 +1,3 @@
+0 1 * * * /bin/bash /scripts/full_backup.sh >> /logs/full_backup.log 2>&1
+
+0 1,13 * * * /bin/bash /scripts/partial_backup.sh >> /logs/partial_backup.log 2>&1

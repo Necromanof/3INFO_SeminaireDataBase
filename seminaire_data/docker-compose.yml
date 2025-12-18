@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:17-alpine3.19
+    container_name: pg
+    restart: always
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: technofix
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./scripts:/scripts
+    ports:
+      - "5432:5432"
+
+  cron:
+    build: ./cron
+    container_name: pg-cron
+    volumes:
+      - ./scripts:/scripts
+    depends_on:
+      - postgres
